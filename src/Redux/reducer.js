@@ -7,6 +7,7 @@ import {
     FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY
 } from "./actions";
 
+import {GET_REVIEWS} from './actionsReview'
 
 const initialState = {
     userActive: [],
@@ -25,7 +26,8 @@ const initialState = {
     : [],
     pending: [],
     finished: [],
-    deleted: []
+    deleted: [],
+    Reviews:[]
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -209,6 +211,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 Respuesta: payload
             };
 
+            //REVIEW
+       
+        case GET_REVIEWS:
+            return {...state, Reviews: payload.reviews}
+        
         default: return state;
     }
 }

@@ -271,3 +271,6 @@ export const axiosCategories = () => async (dispatch) => {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
 };
+
+
+
