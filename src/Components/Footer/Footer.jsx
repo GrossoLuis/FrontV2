@@ -25,13 +25,13 @@ const Footer = () => {
 
 
       </div>
-      <form>
+      {/* <form>
           <input  type="email" name="email" id="email" placeholder="Update in your inbox..." required/>
           <button className={f.buttonform} type="submit">GO</button>
 
 
 
-      </form>
+      </form> */}
       </div>
   );
 };
