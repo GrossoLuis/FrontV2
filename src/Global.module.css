@@ -322,3 +322,45 @@ input {
 
 
 }
+
+.imagenzoom{
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+    height: auto;
+    -o-object-fit: contain;
+    object-fit: contain;
+    width: 100%;
+}
+
+
+.btnreview{
+    border: 2px solid var(--tertiary-color);
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
+    cursor: pointer;
+    margin-top: 20px;
+
+}
+
+
+.comentario{
+display: flex;
+justify-content: center;
+margin-top: 30px;
+flex-direction: column;
+
+
+}
+
+.comentario2{
+display: flex;
+margin-left: 30%;
+gap: 20px;
+}

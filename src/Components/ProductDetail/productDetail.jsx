@@ -52,7 +52,7 @@ export default function ProductDetail() {
 
       <div className={s.imgproducts}>
         <div className={s.leftproducts}>
-          <img
+          {/* <img
             style={{ border: "2px solid black", borderRadius: "10px" }}
             src={product.image}
             width="65"
@@ -72,16 +72,16 @@ export default function ProductDetail() {
             width="65"
             height="60"
             alt="products"
-          />
+          /> */}
         </div>
 
         <div>
           {/* <h1>{product?.name}</h1> */}
-          <img src={product.image} width="450px" height="400px" alt="" />
+          <img src={product.image} width="400px" height="350px" alt="" />
         </div>
       </div>
       {/* <div className={s.categories}>{product?.category}</div> */}
-      <div className={s.description}>{product.description}</div>
+      <div className={s.description}> <h1>Details:</h1> {product.description}</div>
 
       <div
         style={{
@@ -111,22 +111,35 @@ export default function ProductDetail() {
       <div>
         {
           product.reviews?.map(element => (
-            <div key={element.id}>
+         
+         
+         
+         
+         <div className={s.comentario} key={element.id}>
               
-              {element.rate === 1 ? "⭐" :
+              {/* {element.rate === 1 ? "⭐" :
                element.rate === 2 ? "⭐⭐":
                element.rate === 3 ? "⭐⭐⭐":
                element.rate === 4 ? "⭐⭐⭐⭐":
                element.rate === 5 ? "⭐⭐⭐⭐⭐":
                null
-               }
+               } */}
               
-              <label style={{ textAligne: 'center' }}>{element.title}</label>
-              <textarea
-                style={{ resize: 'none' }}
+             <div className={s.comentario2}>  
+             {element.rate === 1 ? "⭐" :
+               element.rate === 2 ? "⭐⭐":
+               element.rate === 3 ? "⭐⭐⭐":
+               element.rate === 4 ? "⭐⭐⭐⭐":
+               element.rate === 5 ? "⭐⭐⭐⭐⭐":
+               null
+              }
+              <label style={{ textAligne: 'center' }}> {element.title} </label>
+              </div>
+             <div>   <textarea 
+                style={{ resize: 'none', borderRadius:'10px' }}
                 value={element.content}
                 rows="3" cols="70"
-                readonly />
+                readonly />    </div>
              
             </div>
           ))

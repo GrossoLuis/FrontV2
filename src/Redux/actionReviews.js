@@ -30,7 +30,7 @@ export function addReview(review, productId) {
 }
 
 export function updateReview(productId, updateRewiew){
-    let reviewId = updateReview.id;
+	let reviewId = updateRewiew.id;
     return async function (dispatch){
 		const response = await axios.put(`/${productId}/review/${reviewId}`)
         return dispatch({

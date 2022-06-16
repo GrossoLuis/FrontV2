@@ -31,7 +31,7 @@ export const getOrder = (order) => async (dispatch) => {
     // var objeto = {user: order.user}
     
 
-    var {data} = await axios.get(`/order?status=${order.status}&user=${order.user}&purchaseId=${order.purchaseId}`)
+    var { data } = await axios.get(`/order?status=${order.status}&user=${order.user}&purchaseId=${order.purchaseId}`);
     return dispatch({
         type: GET_ORDERS,
         payload: { status: order.status, data },

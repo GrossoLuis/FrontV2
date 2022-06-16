@@ -32,7 +32,7 @@ const URL="http://localhost:3001"
 
 export function findOrCreateUser(user) {
     return (dispatch) => {
-        axios.post(`${URL}/admin/register`, user)
+        axios.post(`/admin/register`, user)
             .then((r) => {
                 if (r.data[0] !== 'banned') {
                     dispatch({
@@ -309,7 +309,7 @@ export function cleanUser() {
 
 export function upDateProfileUser(id, body) {
     return (dispatch) => {
-        axios.put(`${URL}/update/profileuser/${id}`, body)
+        axios.put(`/update/profileuser/${id}`, body)
             .then((r) => {
                 return dispatch({
                     type: UPDATEPROFILEUSER,
@@ -323,7 +323,7 @@ export function upDateProfileUser(id, body) {
 }
 export function todosUsers() {
     return (dispatch) => {
-        axios.get(`${URL}/users`)
+        axios.get(`/users`)
             .then((r) => {
                 return dispatch({
                     type: TODOSUSERS,
@@ -335,7 +335,7 @@ export function todosUsers() {
 }
 export function upDateFunction(id, body) {
     return (dispatch) => {
-        axios.put(`${URL}/updatefunction/${id}`, body)
+        axios.put(`/updatefunction/${id}`, body)
             .then((r) => {
                 return dispatch({
                     type: UPDATEFUNCTION,
@@ -348,7 +348,7 @@ export function upDateFunction(id, body) {
 }
 export function getOrders() {
     return (dispatch) => {
-        axios.get(`${URL}/taskmanager`)
+        axios.get(`/taskmanager`)
             .then((r) => {
                 return dispatch({
                     type: GET_ALLORDERS,

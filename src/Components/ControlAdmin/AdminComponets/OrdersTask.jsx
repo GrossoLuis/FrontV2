@@ -4,6 +4,8 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { getOrders, upDateOrder, vaciarRespuesta } from "../../../Redux/actions"
+import s from "./createProductScreen.module.css"
+
 
 export default function OrdersTask(){
 
@@ -43,7 +45,8 @@ export default function OrdersTask(){
     }
 
     return(
-        <div>
+        <div style={{marginTop:"60px"}}>
+            <h1>Orders</h1>
             <div>
                 <select name="finished" id="" onChange={(e)=>{handleOnChange(e)}}>
 
@@ -70,7 +73,7 @@ export default function OrdersTask(){
                     
                 </select>
             </div>
-            <div>
+            <div >
                 <select name="status" id="" onChange={(e)=>{handleOnChange(e)}}>
                     <option value="">Change Status</option>
                     <option value="finished">Finished</option>
@@ -78,7 +81,7 @@ export default function OrdersTask(){
                     <option value="delivered">Delivered</option>
                 </select>
             </div>
-            <button onClick={(e)=>{handleOnClick(e)}}>Submit</button>
+            <button className={s.button2}  onClick={(e)=>{handleOnClick(e)}}>Done</button>
         </div>
     )
 }
