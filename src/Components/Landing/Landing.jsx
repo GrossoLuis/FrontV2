@@ -83,7 +83,7 @@ function Landing() {
                   />
                 </div>
               
-              )).slice(700, 708)}
+              )).slice(700, 706)}
       </div>
 
     </div>

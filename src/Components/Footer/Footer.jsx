@@ -11,6 +11,7 @@ const Footer = () => {
         <FaInstagram style={{ color: "white", fontSize: "40px"}}/>
         <FaFacebookSquare style={{ color: "white", fontSize: "40px"}} />
       </div>
+      
       <div className={f.lista}>
         <ul>
          <Link to="/"><li>Home</li></Link> 
@@ -22,16 +23,8 @@ const Footer = () => {
           <li>Community</li>  
           <li>Legal Politicy  </li>
           </ul>
-
-
       </div>
-      <form>
-          <input  type="email" name="email" id="email" placeholder="Update in your inbox..." required/>
-          <button className={f.buttonform} type="submit">GO</button>
 
-
-
-      </form>
       </div>
   );
 };

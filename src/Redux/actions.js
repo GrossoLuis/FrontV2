@@ -29,7 +29,6 @@ export const GET_ALLORDERS = 'GET_ALLORDERS';
 export const UPDATEORDER = 'UPDATEORDER';
 
 
-
 export function findOrCreateUser(user) {
     return (dispatch) => {
         axios.post(`/admin/register`, user)
