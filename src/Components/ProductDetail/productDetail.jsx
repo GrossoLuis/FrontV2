@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import s from "../../Global.module.css";
-import {
-  addToCart, getOrder, postOrder,
-} from "../../Redux/actionsCarrito";
+import {addToCart, getOrder, postOrder} from "../../Redux/actionsCarrito";
 import { axiosDataId } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { messageSuccess } from "../Herramientas/MessageBox";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-
 import Reviews from "../Review/Reviews";
-
-
 import { useAuth0 } from '@auth0/auth0-react';
 import { cleanComment, obtenerMatch } from '../../Redux/actionReviews';
-import { AiOutlineStar} from 'react-icons/ai';
 
 
 export default function ProductDetail() {
@@ -46,7 +40,7 @@ export default function ProductDetail() {
   
   return loading ? (
     <>
-      <p> Calling to the rookies...</p>
+      <p> Loading...</p>
     </>
   ) : error ? (
     <>

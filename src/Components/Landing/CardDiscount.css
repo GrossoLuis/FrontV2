@@ -10,6 +10,7 @@
     position: relative;
     transition: 0.4s ease-out;
     cursor: pointer;
+    width: 310px;
 }
 
 .card-container {
@@ -114,15 +115,15 @@
     color: var(--secondary-color);
 }
 
-h1{
-align-items: center;
-justify-content: center;
-text-align: center;
-font-size: 20px; 
+h1 {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
 
 }
 
-small{
+small {
     align-items: center;
     text-align: center;
     justify-content: center;

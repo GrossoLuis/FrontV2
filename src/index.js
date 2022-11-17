@@ -7,12 +7,16 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
+import axios from 'axios';
+import dotenv from "dotenv";
 
+dotenv.config();
+axios.defaults.baseURL = process.env.REACT_APP_URL || "http://localhost:3001";
 
 ReactDOM.render(
   <Auth0Provider
-    domain="therookies.us.auth0.com"
-    clientId="NTitcY3q3FUJGQ67aF4yeN7llM2rbRoo"
+    domain='therookies.us.auth0.com'
+    clientId='NTitcY3q3FUJGQ67aF4yeN7llM2rbRoo'
     redirectUri={window.location.origin}
   >
     <Provider store={store}>

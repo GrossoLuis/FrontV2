@@ -9,7 +9,7 @@ export const CLEAN_COMMENT="cleanComment";
 export function addReview(review, productId) {
 	return async (dispatch) => {
 		await axios
-			.post(`http://localhost:3001/routeReview/${productId}`, review)
+			.post(`/routeReview/${productId}`, review)
 			.then((res) => {
 				if (res.status === 200) {
 					return dispatch({
@@ -30,9 +30,9 @@ export function addReview(review, productId) {
 }
 
 export function updateReview(productId, updateRewiew){
-    let reviewId = updateReview.id;
+	let reviewId = updateRewiew.id;
     return async function (dispatch){
-        const response = await axios.put(`http://localhost:3001/${productId}/review/${reviewId}`)
+		const response = await axios.put(`/${productId}/review/${reviewId}`)
         return dispatch({
             type: UPDATE_REVIEW,
             payload: response.data
@@ -43,7 +43,7 @@ export function updateReview(productId, updateRewiew){
 
 export function obtenerMatch( userEmail, id){
     return async function (dispatch){
-        const info = await axios.get(`http://localhost:3001/routeReview/pagado?productId=${id}&userEmail=${userEmail}`)
+		const info = await axios.get(`/routeReview/pagado?productId=${id}&userEmail=${userEmail}`)
         return dispatch({
             type: OBTENER_MATCH,
             payload: info.data

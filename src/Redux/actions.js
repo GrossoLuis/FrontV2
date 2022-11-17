@@ -2,7 +2,7 @@ import axios from 'axios';
 import ordenarBublee from '../Components/Ordenamiento/ordenarNumeros';
 import { getError } from "../Components/Herramientas/utils";
 
-export const UPDATESTOCK='UPDATESTOCK';
+
 export const FIND_OR_CREATE_USER = 'FIND_OR_CREATE_USER';
 export const SEARCH_PRODUCT = 'SEARCH PRODUCT';
 export const TODOS_PRODUCT = 'TODOS_PRODUCT';
@@ -20,46 +20,38 @@ export const ACTUALIZAR = 'ACTUALIZAR';
 export const CREATEPRODUCT = 'CREATEPRODUCT';
 export const UPDATEPRODUCT = 'UPDATEPRODUCT';
 export const CREARCATEGORY = 'CREARCATEGORY';
-export const CLEANUSER='CLEANUSER';
-export const UPDATEPROFILEUSER='UPDATEPROFILEUSER';
-export const TODOSUSERS='TODOSUSERS';
+export const CLEANUSER = 'CLEANUSER';
+export const UPDATEPROFILEUSER = 'UPDATEPROFILEUSER';
+export const TODOSUSERS = 'TODOSUSERS';
 export const UPDATEFUNCTION = 'UPDATEFUNCTION';
-export const GET_PAYMENT_ID = 'GET_PAYMENT_ID'
-export const GET_ALLORDERS='GET_ALLORDERS'
-export const UPDATEORDER='UPDATEORDER'
+export const GET_PAYMENT_ID = 'GET_PAYMENT_ID';
+export const GET_ALLORDERS = 'GET_ALLORDERS';
+export const UPDATEORDER = 'UPDATEORDER';
 
-
-const URL = 'http://localhost:3001';
 
 export function findOrCreateUser(user) {
-    return (dispatch)=> {
-        axios.post(`${URL}/admin/register`, user)
-        .then((r)=>{
-            if(r.data[0]!=='banned'){
-                dispatch({
-                    type: FIND_OR_CREATE_USER,
-                    payload: [r.data]
-                })
+    return (dispatch) => {
+        axios.post(`/admin/register`, user)
+            .then((r) => {
+                if (r.data[0] !== 'banned') {
+                    dispatch({
+                        type: FIND_OR_CREATE_USER,
+                        payload: [r.data]
+                    });
 
-            }else(
-                dispatch({
-                    type:FIND_OR_CREATE_USER,
-                    payload:['banned']
-                })
-            )
-
-
-        })
-      
-       
+                } else (
+                    dispatch({
+                        type: FIND_OR_CREATE_USER,
+                        payload: ['banned']
+                    })
+                );
+            });
     };
 }
 
 export function findProduct(name) {
-    return async function (dispatch) 
-    
-    { 
-        const res = await axios.get(`${URL}/paginado?name=${name}`);
+    return async function (dispatch) {
+        const res = await axios.get(`/paginado?name=${name}`);
         const product = res.data;
         dispatch({
             type: SEARCH_PRODUCT,
@@ -70,7 +62,7 @@ export function findProduct(name) {
 
 export function getPayId(payment_id) {
     return async function (dispatch) {
-        const pay = await axios.get(`http://localhost:3001/purchases/${payment_id}`);
+        const pay = await axios.get(`/purchases/${payment_id}`);
         dispatch({
             type: GET_PAYMENT_ID,
             payload: pay.data
@@ -80,7 +72,7 @@ export function getPayId(payment_id) {
 
 export function obtenerTodosProducts() {
     return (dispatch) => {
-        axios.get(`${URL}/products`)
+        axios.get(`/products`)
             .then((r) => {
                 return dispatch({
                     type: TODOS_PRODUCT,
@@ -94,7 +86,7 @@ export function obtenerTodosProducts() {
 
 export function obtenerTodosCategory() {
     return (dispatch) => {
-        axios.get(`${URL}/category`)
+        axios.get(`/category`)
             .then((r) => {
 
                 return dispatch({
@@ -229,7 +221,7 @@ export function actualizar(arrObj) {
 
 export function createProduct(body) {
     return (dispatch) => {
-        axios.post(`${URL}/createProduct`, body)
+        axios.post(`/createProduct`, body)
             .then(() => {
                 return dispatch({
                     type: CREATEPRODUCT,
@@ -243,21 +235,21 @@ export function createProduct(body) {
 export function upDateProduct(id, body) {
     return (dispatch) => {
 
-        axios.put(`${URL}/updateproduct/${id}`, body)
+        axios.put(`/updateproduct/${id}`, body)
             .then(() => {
                 return dispatch({
                     type: UPDATEPRODUCT,
                     payload: ['actualizando', body.id]
-                })
-           
+                });
+
             })
-            .catch((err)=>console.log(err))
+            .catch((err) => console.log(err));
     };
 }
 
 export function crearCategory(body) {
     return (dispatch) => {
-        axios.post(`${URL}/crearcategory`, body)
+        axios.post(`/crearcategory`, body)
             .then(() => {
                 return dispatch({
                     type: CREARCATEGORY,
@@ -273,7 +265,7 @@ export function crearCategory(body) {
 export const axiosDataId = (id) => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' });
     try {
-        const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+        const { data } = await axios.get(`/products/${id}`);
         data.name = data.name.replace(/[#-]/g, " ");
         data.category = data.category.name.replace(/[#_]/g, " ");
         return dispatch({ type: 'AXIOS_SUCCESS', payload: data });
@@ -282,13 +274,13 @@ export const axiosDataId = (id) => async (dispatch) => {
     }
 };
 
-  export const fetchData = (page, category, order, price, query) => async (dispatch) => {
-    dispatch({ type: 'AXIOS_REQUEST' })
+export const fetchData = (page, category, order, price, query) => async (dispatch) => {
+    dispatch({ type: 'AXIOS_REQUEST' });
     try {
-      const response = await axios.get(
-    `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}&query=${query}`);
-    
-      return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
+        const response = await axios.get(
+            `/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}&query=${query}`);
+
+        return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
@@ -297,104 +289,92 @@ export const axiosDataId = (id) => async (dispatch) => {
 export const axiosCategories = () => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' });
     try {
-        const response = await axios.get(`http://localhost:3001/category`);
+        const response = await axios.get(`/category`);
         return dispatch({ type: 'FETCH_CATEGORIES', payload: response.data });
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
 
 };
-export function cleanUser(){
-    return(dispatch)=>{
+export function cleanUser() {
+    return (dispatch) => {
 
         return dispatch({
-            type:CLEANUSER,
-            payload:[]
-        })
-    }
+            type: CLEANUSER,
+            payload: []
+        });
+    };
 }
 
-export function upDateProfileUser(id,body){
-    return(dispatch)=>{
-        axios.put(`${URL}/update/profileuser/${id}`,body)
-        .then((r)=>{
-            return dispatch({
-                type:UPDATEPROFILEUSER ,
-                payload:[{user:r.data}]
+export function upDateProfileUser(id, body) {
+    return (dispatch) => {
+        axios.put(`/update/profileuser/${id}`, body)
+            .then((r) => {
+                return dispatch({
+                    type: UPDATEPROFILEUSER,
+                    payload: [{ user: r.data }]
+                });
             })
-        })
-        .catch((err)=>console.log(err))
-       
-        
-    }
-}
-export function todosUsers(){
-    return(dispatch)=>{
-        axios.get(`${URL}/users`)
-        .then((r)=>{
-            return dispatch({
-                type:TODOSUSERS,
-                payload:r.data
-            })
-        })
-        .catch((err)=>console.log(err))
-    }
-}
-export function upDateFunction(id,body){
-    return (dispatch)=>{
-        axios.put(`${URL}/updatefunction/${id}`,body)
-        .then((r)=>{
-            return dispatch({
-                type:UPDATEFUNCTION,
-                payload:['update function']
-            })
-        })
+            .catch((err) => console.log(err));
 
 
-    }
+    };
 }
-export function getOrders(){
-    return(dispatch)=>{
-        axios.get(`${URL}/taskmanager`)
-        .then((r)=>{
-            return dispatch({
-                type:GET_ALLORDERS,
-                payload:r.data
+export function todosUsers() {
+    return (dispatch) => {
+        axios.get(`/users`)
+            .then((r) => {
+                return dispatch({
+                    type: TODOSUSERS,
+                    payload: r.data
+                });
             })
-        })
-        .catch((err)=>console.log(err))
+            .catch((err) => console.log(err));
+    };
+}
+export function upDateFunction(id, body) {
+    return (dispatch) => {
+        axios.put(`/updatefunction/${id}`, body)
+            .then((r) => {
+                return dispatch({
+                    type: UPDATEFUNCTION,
+                    payload: ['update function']
+                });
+            });
 
-    }
+
+    };
 }
-export function upDateOrder(id,body){
-    
-    return(dispatch)=>{
-        
-        axios.put(`http://localhost:3001/updateStatus/${id}`,body)
-        .then((r)=>{
-            return dispatch({
-                type:UPDATEORDER,
-                payload:['algo']
+export function getOrders() {
+    return (dispatch) => {
+        axios.get(`/taskmanager`)
+            .then((r) => {
+                return dispatch({
+                    type: GET_ALLORDERS,
+                    payload: r.data
+                });
             })
-        })
-        .catch((err)=>console.log(err))
-            
-             
-             
-          
-        
-        
-    }
+            .catch((err) => console.log(err));
+
+    };
 }
-export function updateStock(id,body){
-    return(dispatch)=>{
-        axios.put(`${URL}/stock/${id}`,body)
-        .then(()=>{
-            return dispatch({
-                type:UPDATESTOCK,
-                payload:['update stock']
+export function upDateOrder(id, body) {
+
+    return (dispatch) => {
+
+        axios.put(`/updateStatus/${id}`, body)
+            .then((r) => {
+                return dispatch({
+                    type: UPDATEORDER,
+                    payload: ['algo']
+                });
             })
-        })
-        .catch((err)=>console.log(err))
-    }
+            .catch((err) => console.log(err));
+
+
+
+
+
+
+    };
 }

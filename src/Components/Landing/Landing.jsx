@@ -32,7 +32,7 @@ function Landing() {
     const axiosData = async () => {
       dispatch({ type: 'AXIOS_REQUEST' });
       try {
-        const result = await axios.get('http://localhost:3001/products');
+        const result = await axios.get('/products');
         dispatch({ type: 'AXIOS_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'AXIOS_FAIL', payload: err.message });
@@ -47,7 +47,6 @@ function Landing() {
         first_name: user.given_name || user.nickname,
         last_name: user.family_name || undefined,
         image: user.picture,
-        
         shoppingCar: carrito
 
       }));
@@ -84,7 +83,7 @@ function Landing() {
                   />
                 </div>
               
-              )).slice(700, 708)}
+              )).slice(700, 706)}
       </div>
 
     </div>

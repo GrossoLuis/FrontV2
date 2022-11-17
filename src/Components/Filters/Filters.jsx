@@ -1,6 +1,6 @@
 import { getError } from '../../utils';
 import axios from 'axios';
-import { useReducer, useEffect, useState } from 'react';
+import { useReducer, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const reducer = (state, action) => {
@@ -33,7 +33,7 @@ export default function FilterCategories(){
 useEffect(() => {
   const axiosCategories = async () => {
     try {
-    const { data } = await axios.get(`http://localhost:3001/category`);
+    const { data } = await axios.get(`/category`);
     dispatch({ type: 'AXIOS_SUCCESS', payload: data});
     } catch (err) {
     dispatch({type: 'AXIOS_FAIL', payload: getError(err),});

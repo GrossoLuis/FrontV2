@@ -16,14 +16,14 @@ function CardDiscount({ image, name, id, price, discount }) {
             <div className="info">
                 <fieldset>
                     <legend> {discount} </legend>
-                    <h3 >Aprovecha este increible descuento</h3>
+                    <h3 >Amazing price...</h3>
                     <p> Sale {discount} </p>
 
-                    <h1>Precio final:  {price/2}  </h1>
+                    <h1>Total price:  {price/2}  </h1>
                     
                 </fieldset>
                 <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
-                    <button>Ver más</button> 
+                    <button>See more</button>
                 </Link>
             
             </div>

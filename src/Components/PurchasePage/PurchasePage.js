@@ -35,7 +35,7 @@ export default function PurchasePage() {
         });
 
         //Hago el Post de MercadoPago
-          axios.post('http://localhost:3001/mercadopay', {
+          axios.post('/mercadopay', {
             carrito: item,
             userEmail: user.email
           }).then((r) => {
@@ -52,7 +52,7 @@ export default function PurchasePage() {
 
 return (
     <div className={s.size}>
-       <h1> Redirecting to Mercado Pago... </h1>
+    <h1> Redirecting to MercadoPago... </h1>
     </div>
     );
 }

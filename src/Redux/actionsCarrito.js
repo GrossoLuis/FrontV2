@@ -20,7 +20,7 @@ export const clearCart = () => ({type:CLEAR_CART})
 
 export const postOrder = (order) => async (dispatch) => {
 
-    var {data}= await axios.post(`http://localhost:3001/order`, order);
+    var { data } = await axios.post(`/order`, order);
         return dispatch({
             type: POST_ORDER,
             payload: { status: order.status, data },
@@ -31,8 +31,7 @@ export const getOrder = (order) => async (dispatch) => {
     // var objeto = {user: order.user}
     
 
-    var {data} = await axios.get(`
-    http://localhost:3001/order?status=${order.status}&user=${order.user}&purchaseId=${order.purchaseId}` );
+    var { data } = await axios.get(`/order?status=${order.status}&user=${order.user}&purchaseId=${order.purchaseId}`);
     return dispatch({
         type: GET_ORDERS,
         payload: { status: order.status, data },
@@ -40,7 +39,7 @@ export const getOrder = (order) => async (dispatch) => {
 }
 
 export const deleteOrder = (order) => async (dispatch) => {
-    var {data} = await axios.delete(`http://localhost:3001/order/${order}`)
+    var { data } = await axios.delete(`/order/${order}`)
     return dispatch({
         type: DELETE_ORDER,
         payload: { status: order.status, data },
@@ -48,7 +47,7 @@ export const deleteOrder = (order) => async (dispatch) => {
 }
 
 export const putOrder = (order) => async (dispatch) => {
-    var {data} = await axios.put(`http://localhost:3001/order`, {
+    var { data } = await axios.put(`/order`, {
         amount: order.amount,
         productId: order.productId,
         status: order.status,
@@ -61,7 +60,7 @@ export const putOrder = (order) => async (dispatch) => {
 }
 
 export const postAllOrders = (order) => async (dispatch) => {
-    var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`, order)
+    var { data } = await axios.post(`/order/postAllOrders`, order)
 
     return dispatch({
         type: POST_ALL_ORDERS,
@@ -70,8 +69,7 @@ export const postAllOrders = (order) => async (dispatch) => {
 }
 
 export const changeOrderStatus = (order) => async (dispatch) => {
-    
-    var {data} = await axios.put(`http://localhost:3001/mercadopay`, order)
+    var { data } = await axios.put(`/mercadopay`, order)
     return dispatch({
         type: CHANGE_ORDER_STATUS,
         payload: data
@@ -79,7 +77,7 @@ export const changeOrderStatus = (order) => async (dispatch) => {
 }
 
 export const getUserInfo = (user) => async (dispatch) => {
-    var {data} = await axios.get(`http://localhost:3001/users/${user}`)
+    var { data } = await axios.get(`/users/${user}`)
     return dispatch({
         type: GET_USER_INFO,
         payload: data

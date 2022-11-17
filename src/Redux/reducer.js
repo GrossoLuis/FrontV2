@@ -10,7 +10,7 @@ import {
     FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER,
     UPDATEPROFILEUSER,
     TODOSUSERS,
-    UPDATEFUNCTION, GET_PAYMENT_ID ,GET_ALLORDERS ,UPDATEORDER, UPDATESTOCK
+    UPDATEFUNCTION, GET_PAYMENT_ID ,GET_ALLORDERS ,UPDATEORDER
 } from "./actions";
 
 import {OBTENER_MATCH, CLEAN_COMMENT} from "./actionReviews";
@@ -277,11 +277,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 AllOrders:payload
             }
         case UPDATEORDER:
-            return{
-                ...state,
-                Respuesta:payload
-            }
-        case UPDATESTOCK:
             return{
                 ...state,
                 Respuesta:payload

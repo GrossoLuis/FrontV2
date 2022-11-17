@@ -63,7 +63,7 @@ export default function NavBar(props) {
                   alt="img user"
                 />
         
-               <h4>Hola {user.given_name}</h4>
+               <h4>Hi {user.given_name}</h4>
               
               </div>
             </Link>

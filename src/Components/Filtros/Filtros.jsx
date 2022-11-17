@@ -2,11 +2,10 @@ import { useSelector } from "react-redux"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import f from './filtros.module.css'
-import { filtrarPorPrecio, filtroPorCategory, vaciarProductResultAux, 
-    obtenerTodosProducts,vaciarRespuesta,actualizar } from "../../Redux/actions"
+import { filtrarPorPrecio, filtroPorCategory,vaciarRespuesta,actualizar } from "../../Redux/actions"
 
 export default function Filtros(props){
-    const objaux={}
+
     const dispatch=useDispatch()
     
     const todasLasCategorias=useSelector(state=>state.Category)
@@ -53,17 +52,17 @@ export default function Filtros(props){
         <div className={f.filtrosbox}>
 
             <select className={f.selectest} name="category" id="" onChange={(e)=>{handleOnChange(e)}}>
-                <option value={'todos'}>VER TODOS LOS PRODUCTOS</option>
+                <option value={'todos'}>All Products</option>
             {todasLasCategorias.length>0&&todasLasCategorias.map((e,i)=>{
                 
                 return <option key={i} value={e.id}>{e.name}</option>
             })}
             </select>
-            <button className={f.buttonF} onClick={(e)=>handleOnCategory(e)} >Filtrar</button>
+            <button className={f.buttonF} onClick={(e)=>handleOnCategory(e)} >Filter</button>
 
             <input type="number" name="precio" placeholder="precio"
                      onChange={(e)=>handleOnChange(e)}  />
-            <button className={f.buttonS} onClick={(e)=>{handleOnClick(e)}}>Buscar</button>        
+            <button className={f.buttonS} onClick={(e)=>{handleOnClick(e)}}>Search</button>        
         </div>
     )
 }
