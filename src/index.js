@@ -11,7 +11,7 @@ import axios from 'axios';
 import dotenv from "dotenv";
 
 dotenv.config();
-axios.defaults.baseURL = process.env.REACT_APP_URL;
+axios.defaults.baseURL = process.env.REACT_APP_URL || 'https://eightrookieback.onrender.com';
 
 ReactDOM.render(
   <Auth0Provider
